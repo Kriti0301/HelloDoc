@@ -18,6 +18,8 @@ app.use(compression());
 connectDB();
 
 app.use(helmet());
+app.use(helmet.frameguard({ action: 'deny' })); // X-Frame-Options: DENY
+app.use(helmet.noSniff()); // X-Content-Type-Options: nosniff
 app.use(cors({
   origin: process.env.CORS_ORIGIN || '*'
 }));
